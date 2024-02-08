@@ -1,0 +1,53 @@
+# Copyright 2021 Data In Motion Consulting GmbH
+#
+# This program and the accompanying materials are made available under the terms of the 
+# Eclipse Public License v2.0 which accompanies this distribution, and is available at
+# http://www.eclipse.org/legal/epl-v20.html
+#
+# SPDX-License-Identifier: EPL-2.0
+
+-plugin.0.maven_central:\
+	aQute.bnd.repository.maven.provider.MavenBndRepository;\
+		releaseUrl=https://repo.maven.apache.org/maven2/;\
+		snapshotUrl			= "https://oss.sonatype.org/content/repositories/snapshots/";\
+		index=${.}/central.maven;\
+		poll_time 			= -1;\
+		name='Maven Central'
+
+-plugin.sensinact: \
+	aQute.bnd.repository.maven.provider.MavenBndRepository;\
+		releaseUrl			= "https://repo.maven.apache.org/maven2/";\
+		snapshotUrl			= "https://repo.eclipse.org/content/groups/sensinact/,https://repository.apache.org/snapshots/";\
+		index				= "${.}/sensinact.maven";\
+		readOnly			= true;\
+		poll_time 			= -1;\
+		name='SensiNact SDK'
+
+-plugin.osgi: \
+	aQute.bnd.repository.maven.provider.MavenBndRepository;\
+		releaseUrl			= "https://repo.maven.apache.org/maven2/";\
+		index="${.}/osgi.maven";\
+		readOnly			= true;\
+		poll_time 			= -1;\
+		name='OSGi Deps'
+
+-plugin.Local: \
+	aQute.bnd.deployer.repository.LocalIndexedRepo; \
+		name = Local; \
+		pretty = true; \
+		local = ${build}/local
+
+-plugin.gecko: \
+	aQute.bnd.repository.maven.provider.MavenBndRepository;\
+		releaseUrl="https://devel.data-in-motion.biz/nexus/repository/dim-release/,https://devel.data-in-motion.biz/nexus/repository/maven-public/";\
+		snapshotUrl=https://devel.data-in-motion.biz/nexus/repository/dim-snapshot/;\
+		index=${.}/dim_release.maven;\
+		poll_time 			= -1;\
+		name='DIM_Nexus_Release'
+
+-plugin.modeling:\
+	aQute.bnd.repository.osgi.OSGiRepository;\
+		name=DIM_Eclipse_Runtime;\
+		locations=https://devel.data-in-motion.biz/public/update/repository/p2/obr/dim-core-runtime/index.xml;\
+		cache=${build}/cache/dim-core-runtime;\
+		poll.time=-1		

@@ -1,0 +1,18 @@
+# Copyright 2021 Data In Motion Consulting GmbH
+#
+# This program and the accompanying materials are made available under the terms of the 
+# Eclipse Public License v2.0 which accompanies this distribution, and is available at
+# http://www.eclipse.org/legal/epl-v20.html
+#
+# SPDX-License-Identifier: EPL-2.0
+#
+# this will be replaced with `bnd-workspace-extensions` to solve the caching problem and use fixed versions. 
+-require-bnd: "(version>=6.4.0)"
+	
+-plugin.libraries:\
+	aQute.bnd.repository.maven.provider.MavenBndRepository;\
+		releaseUrl			= "https://repo.maven.apache.org/maven2/,https://devel.data-in-motion.biz/nexus/repository/dim-release/"; \
+		snapshotUrl			= "https://devel.data-in-motion.biz/nexus/repository/dim-snapshot/,https://oss.sonatype.org/content/repositories/snapshots/";\
+		poll_time 			= -1;\
+		index=${.}/libraries.maven;\
+		name='Libraries'
