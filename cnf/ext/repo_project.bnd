@@ -6,22 +6,13 @@
 #
 # SPDX-License-Identifier: EPL-2.0
 
--plugin.0.maven_central:\
+-plugin.libraries:\
 	aQute.bnd.repository.maven.provider.MavenBndRepository;\
-		releaseUrl=https://repo.maven.apache.org/maven2/;\
-		snapshotUrl			= "https://oss.sonatype.org/content/repositories/snapshots/";\
-		index=${.}/central.maven;\
+		releaseUrl			= "https://repo.maven.apache.org/maven2/,https://devel.data-in-motion.biz/nexus/repository/dim-release/"; \
+		snapshotUrl			= "https://devel.data-in-motion.biz/nexus/repository/dim-snapshot/,https://oss.sonatype.org/content/repositories/snapshots/";\
 		poll_time 			= -1;\
-		name='Maven Central'
-
--plugin.sensinact: \
-	aQute.bnd.repository.maven.provider.MavenBndRepository;\
-		releaseUrl			= "https://repo.maven.apache.org/maven2/";\
-		snapshotUrl			= "https://repo.eclipse.org/content/groups/sensinact/,https://repository.apache.org/snapshots/";\
-		index				= "${.}/sensinact.maven";\
-		readOnly			= true;\
-		poll_time 			= -1;\
-		name='SensiNact SDK'
+		index=${.}/libraries.maven;\
+		name='Libraries'
 
 -plugin.osgi: \
 	aQute.bnd.repository.maven.provider.MavenBndRepository;\
@@ -31,23 +22,23 @@
 		poll_time 			= -1;\
 		name='OSGi Deps'
 
--plugin.Local: \
-	aQute.bnd.deployer.repository.LocalIndexedRepo; \
-		name = Local; \
-		pretty = true; \
-		local = ${build}/local
-
--plugin.gecko: \
+-plugin.maven_central:\
 	aQute.bnd.repository.maven.provider.MavenBndRepository;\
-		releaseUrl="https://devel.data-in-motion.biz/nexus/repository/dim-release/,https://devel.data-in-motion.biz/nexus/repository/maven-public/";\
-		snapshotUrl=https://devel.data-in-motion.biz/nexus/repository/dim-snapshot/;\
-		index=${.}/dim_release.maven;\
+		releaseUrl=https://repo.maven.apache.org/maven2/;\
+		snapshotUrl			= "https://oss.sonatype.org/content/repositories/snapshots/";\
+		index=${.}/central.maven;\
 		poll_time 			= -1;\
-		name='DIM_Nexus_Release'
+		name='Maven Central'
 
 -plugin.modeling:\
 	aQute.bnd.repository.osgi.OSGiRepository;\
 		name=DIM_Eclipse_Runtime;\
 		locations=https://devel.data-in-motion.biz/public/update/repository/p2/obr/dim-core-runtime/index.xml;\
 		cache=${build}/cache/dim-core-runtime;\
-		poll.time=-1		
+		poll.time=-1
+
+-plugin.Local: \
+	aQute.bnd.deployer.repository.LocalIndexedRepo; \
+		name = Local; \
+		pretty = true; \
+		local = ${build}/local

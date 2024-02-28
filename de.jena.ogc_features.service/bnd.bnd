@@ -1,0 +1,25 @@
+-library: \
+	enable-emf
+
+-buildpath: \
+	de.jena.ogc_features.model.core;version=project,\
+	de.jena.ogc_features.model.geojson;version=project,\
+	de.jena.ogc_features.model.atom;version=project,\
+	org.osgi.service.component,\
+	org.osgi.util.promise,\
+	org.osgi.util.pushstream,\
+	org.osgi.util.function,\
+	org.gecko.emf.repository.mongo;version=latest,\
+	org.gecko.emf.repository.api;version=latest,\
+	org.gecko.emf.mongo.api;version=latest,\
+	org.gecko.emf.mongo.pushstream;version=latest,\
+	org.gecko.emf.pushstreams;version=latest,\
+	org.gecko.util.pushstream;version=latest,\
+	org.gecko.search;version=latest,\
+	org.gecko.search.util;version=latest,\
+	org.gecko.search.document;version=latest,\
+	org.gecko.emf.search;version=latest,\
+	org.apache.lucene.core;version=latest,\
+	slf4j.api
+
+-sub: *.bnd

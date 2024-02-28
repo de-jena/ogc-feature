@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="core" nsURI="http://www.opengis.net/ogcapi-features-1/1.0" nsPrefix="core">
+  <eAnnotations source="Version">
+    <details key="value" value="1.0.1"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="BoundingBox">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lowerCorner" lowerBound="2"
+        upperBound="2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDoubleObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="upperCorner" lowerBound="2"
+        upperBound="2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDoubleObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="crs" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//AnyURI"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dimensions" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//PositiveInteger"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OGCAPIFeaturesCollectionsWrapper">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="collections" lowerBound="1"
+        upperBound="-1" eType="#//OGCAPIFeaturesCollection" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="links" upperBound="-1"
+        eType="ecore:EClass ../../de.jena.ogc_features.model.atom/model/atom.ecore#//LinkType"
+        containment="true" resolveProxies="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OGCAPIFeaturesCollection">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"
+        iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="itemType" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="links" upperBound="-1"
+        eType="ecore:EClass ../../de.jena.ogc_features.model.atom/model/atom.ecore#//LinkType"
+        containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="extent" eType="#//Extent"
+        containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="crs" unique="false" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//AnyURI"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="storageCrs" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//AnyURI"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConformanceDeclaration">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="conformsTo" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="links" lowerBound="1" upperBound="-1"
+        eType="ecore:EClass ../../de.jena.ogc_features.model.atom/model/atom.ecore#//LinkType"
+        containment="true" resolveProxies="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Extent">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="spatial" eType="#//SpatialExtent"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="temporal" eType="#//TemporalExtent"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LandingPage">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="links" upperBound="-1"
+        eType="ecore:EClass ../../de.jena.ogc_features.model.atom/model/atom.ecore#//LinkType"
+        containment="true" resolveProxies="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SpatialExtent">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bbox" lowerBound="1" eType="#//Array2D"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="crs" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//AnyURI"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TemporalExtent">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="interval" lowerBound="1"
+        eType="#//Array2D"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="trs" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//AnyURI"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="Array2D" instanceClassName="java.lang.Double[][]"/>
+</ecore:EPackage>

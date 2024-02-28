@@ -1,0 +1,10 @@
+---
+openapi: 3.0.1
+info:
+  version: '1.0'
+  title: OGC API Features REST API
+
+servers:
+  # DEV without authentication
+  - url: http://localhost:8088/ogc-api-features/rest
+    description: DEV environment server - does not require authentication

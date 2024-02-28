@@ -1,0 +1,26 @@
+-library: \
+	enableJakartaREST,\
+	enable-emf
+
+Bundle-Version: 1.0.0.SNAPSHOT
+
+-buildpath: \
+	de.jena.ogc_features.model.core;version=project,\
+	de.jena.ogc_features.model.geojson;version=project,\
+	de.jena.ogc_features.service.api;version=snapshot,\
+	org.osgi.service.component.annotations;version=latest,\
+	org.osgi.service.servlet;version=latest,\
+	org.gecko.emf.json;version=latest,\
+	org.gecko.emf.rest.jakartars;version=latest,\
+	jakarta.validation.jakarta.validation-api,\
+	io.swagger.core.v3.swagger-core.jakarta,\
+	io.swagger.core.v3.swagger-jaxrs2.jakarta,\
+	io.swagger.core.v3.swagger-annotations.jakarta,\
+	io.swagger.core.v3.swagger-integration.jakarta,\
+	io.swagger.core.v3.swagger-models.jakarta,\
+	org.apache.felix.http.servlet-api,\
+	com.fasterxml.jackson.core.jackson-core,\
+	com.fasterxml.jackson.core.jackson-databind
+
+# OpenAPI meta-data - so it can be shared between both build time and runtime tools
+-includeresource.openApiConfig: openapi-meta.yaml

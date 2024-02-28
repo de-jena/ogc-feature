@@ -4,7 +4,8 @@ org.geckoprojects.emf.persistence:org.gecko.emf.repository.bnd.library.workspace
 org.eclipse.osgi-technology.rest:org.eclipse.osgitech.rest.bnd.library:1.2.2
 org.geckoprojects.search:org.gecko.emf.search.bnd.project.library:1.2.0
 org.geckoprojects.search:org.gecko.search.bnd.library:1.4.0
-org.geckoprojects.bnd:org.gecko.bnd.osgitest.library:1.4.1
+org.geckoprojects.bnd:org.gecko.bnd.osgitest.library:1.5.0
 org.geckoprojects.utils:org.gecko.util.bnd.library.workspace:1.0.0
 org.geckoprojects.emf.utils:org.gecko.emf.util.qvt.bnd.library.workspace.felix:2.0.0-SNAPSHOT
 org.geckoprojects.messaging:org.gecko.adapter.messaging.bnd.library.workspace:1.1.0-SNAPSHOT
+org.geckoprojects.bnd:org.gecko.bnd.jacoco.library:1.5.0

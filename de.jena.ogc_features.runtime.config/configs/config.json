@@ -1,0 +1,30 @@
+{
+	":configurator:resource-version": 1,
+	"org.apache.felix.http~httpOGCAPIFeatures": {
+		"org.osgi.service.http.port": "8088",
+		"org.osgi.service.http.host": "localhost",
+		"org.apache.felix.http.context_path": "/ogc-api-features",
+		"org.apache.felix.http.name": "OGCAPIFeaturesHTTP",
+		"org.apache.felix.http.runtime.init.id": "httpOGCAPIFeatures"
+	},
+	"JakartarsServletWhiteboardRuntimeComponent~restOGCAPIFeatures": {
+		"jersey.jakartars.whiteboard.name": "OGCAPIFeaturesREST",
+		"jersey.context.path": "rest",
+		"osgi.http.whiteboard.target": "(id=httpOGCAPIFeatures)"
+	},
+	"EMFMongoRepositoryConfigurator~OGCAPIFeatures": {
+		"mongo.instances": "OGCAPIFeatures",
+		"OGCAPIFeatures.baseUris": "mongodb://localhost",
+		"OGCAPIFeatures.databases": "OGCAPIFeatures",
+		"OGCAPIFeatures.OGCAPIFeatures.repoType": "PROTOTYPE"
+	},
+	"EMFLuceneIndex~OGCAPIFeaturesIndex": {
+		"id": "OGCAPIFeatures",
+		"directory.type": "ByteBuffer"
+	},
+	"org.apache.felix.webconsole.internal.servlet.OsgiManager": {
+		"username": "ogcAdmin",
+		"password": "ogcAdmin",
+		"http.service.filter": "id=httpOGCAPIFeatures"
+	}
+}

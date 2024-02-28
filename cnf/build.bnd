@@ -36,23 +36,18 @@ javac.source: 17
 javac.target: 17
 javac.debug:  on
 
--library:\
-	geckoEMF,\
-	geckoOSGi-Test,\
-	geckoEMFRepository,\
-	geckoEMFUtil,\
-	geckoUtil,\
-	jakartaREST,
-	
-#	geckoUtilQVT,\
-#	geckoMessaging
-#	geckoSearch
+-require-bnd "(version>=7.0.0)"
 
-sensinact.version: 0.0.2-SNAPSHOT
+-library: \
+	geckoEMF,\
+	geckoEMFUtil,\
+	geckoEMFRepository,\
+	geckoUtil,\
+	jakartaREST,\
+	geckoOSGi-Test,\
+	geckoJacoco
+	
 jackson.version: 2.16.0
-jersey.version: 3.0.8
-jakarta.ws.rs-api.version: 3.1.0
-upd.models.version: 1.2.0-SNAPSHOT
 bnd.version: 7.0.0
 	
 github-project: de-jena/ogc-features
