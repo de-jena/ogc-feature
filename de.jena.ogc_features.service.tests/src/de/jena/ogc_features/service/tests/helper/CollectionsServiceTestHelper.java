@@ -61,10 +61,9 @@ public class CollectionsServiceTestHelper {
 		Extent extent = coreFactory.eINSTANCE.createExtent();
 
 		SpatialExtent spatialExtent = coreFactory.eINSTANCE.createSpatialExtent();
-		
-		// FIXME: causes: java.lang.IllegalStateException: Error while encoding EObject. Cause is: writeStartArray can only be called when State is VALUE, not when State is NAME
-//		spatialExtent.setBbox(new Double[][] { new Double[] { -180.0, -90.0, 180.0, 90.0 } });
-		
+
+		spatialExtent.setBbox(new Double[][] { new Double[] { -180.0, -90.0, 180.0, 90.0 } });
+
 		spatialExtent.setCrs(crs);
 
 		extent.setSpatial(spatialExtent);

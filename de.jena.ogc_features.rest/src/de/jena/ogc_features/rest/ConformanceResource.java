@@ -13,6 +13,7 @@
  */
 package de.jena.ogc_features.rest;
 
+import org.gecko.emf.rest.annotations.json.EMFJSONConfig;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceScope;
@@ -55,6 +56,7 @@ public class ConformanceResource {
 
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
+	@EMFJSONConfig(serializeDefaultValues = true)
 	@Operation(responses = { @ApiResponse(responseCode = "200", content = {
 			@Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = ConformanceDeclaration.class)) }) }, tags = {
 					"Capabilities" })

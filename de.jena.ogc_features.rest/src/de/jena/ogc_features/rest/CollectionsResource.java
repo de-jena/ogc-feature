@@ -13,6 +13,7 @@
  */
 package de.jena.ogc_features.rest;
 
+import org.gecko.emf.rest.annotations.json.EMFJSONConfig;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceScope;
@@ -62,6 +63,7 @@ public class CollectionsResource {
 
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
+	@EMFJSONConfig(serializeDefaultValues = true)
 	@Operation(responses = { @ApiResponse(responseCode = "200", content = {
 			@Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = OGCAPIFeaturesCollectionsWrapper.class)) }) }, tags = {
 					"Data" })
@@ -82,6 +84,7 @@ public class CollectionsResource {
 	@GET
 	@Path("{collectionId}")
 	@Produces({ MediaType.APPLICATION_JSON })
+	@EMFJSONConfig(serializeDefaultValues = true)
 	@Operation(responses = { @ApiResponse(responseCode = "200", content = {
 			@Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = OGCAPIFeaturesCollection.class)) }) }, tags = {
 					"Data" })
@@ -103,6 +106,7 @@ public class CollectionsResource {
 	@GET
 	@Path("{collectionId}/items")
 	@Produces({ MediaType.APPLICATION_JSON })
+	@EMFJSONConfig(serializeDefaultValues = true)
 	@Operation(responses = { @ApiResponse(responseCode = "200", content = {
 			@Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = FeatureCollection.class)) }) }, tags = {
 					"Data" })
@@ -125,6 +129,7 @@ public class CollectionsResource {
 	@GET
 	@Path("{collectionId}/items/{featureId}")
 	@Produces({ MediaType.APPLICATION_JSON })
+	@EMFJSONConfig(serializeDefaultValues = true)
 	@Operation(responses = { @ApiResponse(responseCode = "200", content = {
 			@Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = FeatureCollection.class)) }) }, tags = {
 					"Data" })

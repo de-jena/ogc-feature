@@ -78,7 +78,7 @@ public class OpenAPIResource {
 
 			@Override
 			public void setConfiguration(OpenAPIConfiguration openApiConfiguration) {
-				// TODO Auto-generated method stub
+				// NOP
 			}
 
 			@Override
@@ -92,7 +92,7 @@ public class OpenAPIResource {
 
 			@Override
 			public Map<String, Object> resources() {
-				// TODO Auto-generated method stub
+				// NOP
 				return null;
 			}
 		});

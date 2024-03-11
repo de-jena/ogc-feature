@@ -84,6 +84,7 @@ public class CollectionsServiceImpl implements CollectionsService {
 				.getEObjectsByQuery(corePackage.Literals.OGCAPI_FEATURES_COLLECTION, query);
 
 		for (OGCAPIFeaturesCollection collection : collections) {
+			// FIXME: there should be no "self link" in per-collection links in this context
 			createOGCAPIFeaturesCollectionLinks(collection, baseUrl, mediaType);
 		}
 

@@ -138,6 +138,17 @@ public class CollectionsServiceTest {
 		OGCAPIFeaturesCollection collection = collectionsService.getCollection(COLLECTION_ID, BASE_URL, MEDIA_TYPE);
 		assertThat(collection).isNotNull();
 		assertEquals(COLLECTION_ID, collection.getId());
+
+		assertThat(collection.getExtent()).isNotNull();
+		assertThat(collection.getExtent().getSpatial()).isNotNull();
+		assertThat(collection.getExtent().getSpatial().getBbox()).isNotNull();
+		assertTrue(collection.getExtent().getSpatial().getBbox().getClass().isArray());
+		assertEquals(1, collection.getExtent().getSpatial().getBbox().length);
+		assertEquals(4, collection.getExtent().getSpatial().getBbox()[0].length);
+		assertEquals(-180.0, collection.getExtent().getSpatial().getBbox()[0][0], 0.001);
+		assertEquals(-90.0, collection.getExtent().getSpatial().getBbox()[0][1], 0.001);
+		assertEquals(180.0, collection.getExtent().getSpatial().getBbox()[0][2], 0.001);
+		assertEquals(90.0, collection.getExtent().getSpatial().getBbox()[0][3], 0.001);
 	}
 
 	@Test
