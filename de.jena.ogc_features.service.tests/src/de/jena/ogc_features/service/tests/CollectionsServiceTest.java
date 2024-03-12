@@ -38,6 +38,7 @@ import org.osgi.test.common.annotation.InjectService;
 import org.osgi.test.common.service.ServiceAware;
 import org.osgi.test.junit5.context.BundleContextExtension;
 import org.osgi.test.junit5.service.ServiceExtension;
+import org.w3._2005.atom.LinkType;
 
 import com.mongodb.client.MongoDatabase;
 
@@ -152,7 +153,7 @@ public class CollectionsServiceTest {
 	}
 
 	@Test
-	public void testGetItems(
+	public void testGetItemsDefaultPagination(
 			@InjectService(cardinality = 1, timeout = 5000) ServiceAware<CollectionsService> collectionsServiceAware)
 			throws InterruptedException {
 
@@ -200,6 +201,131 @@ public class CollectionsServiceTest {
 		assertEquals(POLYGON_3_FEATURE_ID, polygon3Feature.getId());
 		assertThat(polygon3Feature.getGeometry()).isNotNull();
 		assertEquals(GeometryType.POLYGON, polygon3Feature.getGeometry().getType());
+	}
+
+	@Test
+	public void testGetItemsCustomPagination(
+			@InjectService(cardinality = 1, timeout = 5000) ServiceAware<CollectionsService> collectionsServiceAware)
+			throws InterruptedException {
+
+		assertThat(collectionsServiceAware.getServices()).hasSize(1);
+		CollectionsService collectionsService = collectionsServiceAware.getService();
+		assertThat(collectionsService).isNotNull();
+
+		long limit = 3;
+		long offset = 0;
+
+		// first page
+		FeatureCollection featureCollection = collectionsService.getItems(COLLECTION_ID, Optional.empty(), limit,
+				offset, BASE_URL, MEDIA_TYPE);
+
+		assertThat(featureCollection).isNotNull();
+		assertEquals(FEATURECOLLECTION_ID, featureCollection.getId());
+		assertThat(featureCollection.getFeatures()).size().isEqualTo(limit);
+
+		Feature point1Feature = featureCollection.getFeatures().get(0);
+		assertEquals(POINT_1_FEATURE_ID, point1Feature.getId());
+		assertThat(point1Feature.getGeometry()).isNotNull();
+		assertEquals(GeometryType.POINT, point1Feature.getGeometry().getType());
+
+		Feature point2Feature = featureCollection.getFeatures().get(1);
+		assertEquals(POINT_2_FEATURE_ID, point2Feature.getId());
+		assertThat(point2Feature.getGeometry()).isNotNull();
+		assertEquals(GeometryType.POINT, point2Feature.getGeometry().getType());
+
+		Feature lineString1Feature = featureCollection.getFeatures().get(2);
+		assertEquals(LINESTRING_1_FEATURE_ID, lineString1Feature.getId());
+		assertThat(lineString1Feature.getGeometry()).isNotNull();
+		assertEquals(GeometryType.LINE_STRING, lineString1Feature.getGeometry().getType());
+
+		assertThat(featureCollection.getLinks()).isNotNull();
+		assertThat(featureCollection.getLinks()).size().isEqualTo(2);
+
+		boolean hasNextLink = false;
+		for (LinkType link : featureCollection.getLinks()) {
+			if ("next".equalsIgnoreCase(link.getRel())) {
+				hasNextLink = true;
+			}
+		}
+
+		assertTrue(hasNextLink);
+
+		// next page
+		offset = (offset + limit);
+
+		featureCollection = collectionsService.getItems(COLLECTION_ID, Optional.empty(), limit, offset, BASE_URL,
+				MEDIA_TYPE);
+
+		assertThat(featureCollection).isNotNull();
+		assertEquals(FEATURECOLLECTION_ID, featureCollection.getId());
+		assertThat(featureCollection.getFeatures()).size().isEqualTo(limit);
+
+		Feature lineString2Feature = featureCollection.getFeatures().get(0);
+		assertEquals(LINESTRING_2_FEATURE_ID, lineString2Feature.getId());
+		assertThat(lineString2Feature.getGeometry()).isNotNull();
+		assertEquals(GeometryType.LINE_STRING, lineString2Feature.getGeometry().getType());
+
+		Feature polygon1Feature = featureCollection.getFeatures().get(1);
+		assertEquals(POLYGON_1_FEATURE_ID, polygon1Feature.getId());
+		assertThat(polygon1Feature.getGeometry()).isNotNull();
+		assertEquals(GeometryType.POLYGON, polygon1Feature.getGeometry().getType());
+
+		Feature polygon2Feature = featureCollection.getFeatures().get(2);
+		assertEquals(POLYGON_2_FEATURE_ID, polygon2Feature.getId());
+		assertThat(polygon2Feature.getGeometry()).isNotNull();
+		assertEquals(GeometryType.POLYGON, polygon2Feature.getGeometry().getType());
+
+		assertThat(featureCollection.getLinks()).isNotNull();
+		assertThat(featureCollection.getLinks()).size().isEqualTo(4);
+
+		hasNextLink = false;
+
+		boolean hasPreviousLink = false, hasFirstLink = false;
+		for (LinkType link : featureCollection.getLinks()) {
+			if ("next".equalsIgnoreCase(link.getRel())) {
+				hasNextLink = true;
+			} else if ("prev".equalsIgnoreCase(link.getRel())) {
+				hasPreviousLink = true;
+			} else if ("first".equalsIgnoreCase(link.getRel())) {
+				hasFirstLink = true;
+			}
+		}
+
+		assertTrue(hasNextLink);
+		assertTrue(hasPreviousLink);
+		assertTrue(hasFirstLink);
+
+		// last page
+		offset = (offset + limit);
+
+		featureCollection = collectionsService.getItems(COLLECTION_ID, Optional.empty(), limit, offset, BASE_URL,
+				MEDIA_TYPE);
+
+		assertThat(featureCollection).isNotNull();
+		assertEquals(FEATURECOLLECTION_ID, featureCollection.getId());
+		assertThat(featureCollection.getFeatures()).size().isEqualTo(1);
+
+		Feature polygon3Feature = featureCollection.getFeatures().get(0);
+		assertEquals(POLYGON_3_FEATURE_ID, polygon3Feature.getId());
+		assertThat(polygon3Feature.getGeometry()).isNotNull();
+		assertEquals(GeometryType.POLYGON, polygon3Feature.getGeometry().getType());
+
+		assertThat(featureCollection.getLinks()).isNotNull();
+		assertThat(featureCollection.getLinks()).size().isEqualTo(3);
+
+		hasPreviousLink = false;
+		hasFirstLink = false;
+		for (LinkType link : featureCollection.getLinks()) {
+			if ("prev".equalsIgnoreCase(link.getRel())) {
+				hasPreviousLink = true;
+			} else if ("first".equalsIgnoreCase(link.getRel())) {
+				hasFirstLink = true;
+			}
+		}
+
+		assertTrue(hasNextLink);
+		assertTrue(hasPreviousLink);
+		assertTrue(hasFirstLink);
 	}
 
 	@Test

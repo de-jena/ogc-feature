@@ -19,7 +19,8 @@ import net.opengis.ogcapi.features.conf.geojson.Feature;
 import net.opengis.ogcapi.features.core.BoundingBox;
 
 /**
- * Search service for {@link net.opengis.ogcapi.features.conf.geojson.Feature} EObjects.
+ * Search service for {@link net.opengis.ogcapi.features.conf.geojson.Feature}
+ * EObjects.
  * 
  * @author Michal H. Siemaszko
  */

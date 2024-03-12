@@ -26,8 +26,16 @@ public enum LinksUtil {
 		return createLink(href, "self", "This document", mediaType);
 	}
 
-	public LinkType createNextLink(String href, String mediaType) {
+	public LinkType createNextPageLink(String href, String mediaType) {
 		return createLink(href, "next", "Next page", mediaType);
+	}
+
+	public LinkType createPreviousPageLink(String href, String mediaType) {
+		return createLink(href, "prev", "Previous page", mediaType);
+	}
+
+	public LinkType createFirstPageLink(String href, String mediaType) {
+		return createLink(href, "first", "First page", mediaType);
 	}
 
 	public LinkType createLink(String href, String rel, String title, String mediaType) {

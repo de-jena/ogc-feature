@@ -64,4 +64,6 @@
 	org.gecko.search;version='[1.3.1,1.3.2)',\
 	org.gecko.search.document;version='[1.3.1,1.3.2)',\
 	de.jena.ogc_features.model.atom;version=snapshot,\
-	org.gecko.emf.mongo.component;version='[6.1.1,6.1.2)'
+	org.gecko.emf.mongo.component;version='[6.1.1,6.1.2)',\
+	org.gecko.emf.mongo.api;version='[6.1.0,6.1.1)',\
+	org.gecko.emf.osgi.api;version='[6.1.1,6.1.2)'

@@ -15,9 +15,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.gecko.emf.repository.EMFRepository;
 import org.gecko.emf.repository.query.IQuery;
-import org.gecko.emf.repository.query.IQueryBuilder;
 import org.gecko.emf.repository.query.QueryRepository;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -68,24 +68,15 @@ public class CollectionsServiceImpl implements CollectionsService {
 		Objects.requireNonNull(baseUrl, "Base URL is required!");
 		Objects.requireNonNull(mediaType, "Media type is required!");
 
-		Optional<Integer> limit = Optional.empty(); // TODO: pagination
-
 		QueryRepository queryRepo = (QueryRepository) emfRepository.getAdapter(QueryRepository.class);
 
-		// @formatter:off
-		IQueryBuilder queryBuilder = queryRepo.createQueryBuilder().allQuery();
-		
-		IQuery query = (limit.isPresent()) ? 
-				queryBuilder.limit(limit.get().intValue()).build() : 
-					queryBuilder.build();
-		// @formatter:on
+		IQuery query = queryRepo.createQueryBuilder().allQuery().build();
 
 		List<OGCAPIFeaturesCollection> collections = queryRepo
 				.getEObjectsByQuery(corePackage.Literals.OGCAPI_FEATURES_COLLECTION, query);
 
 		for (OGCAPIFeaturesCollection collection : collections) {
-			// FIXME: there should be no "self link" in per-collection links in this context
-			createOGCAPIFeaturesCollectionLinks(collection, baseUrl, mediaType);
+			createOGCAPIFeaturesCollectionLinks(collection, false, baseUrl, mediaType);
 		}
 
 		OGCAPIFeaturesCollectionsWrapper wrapper = coreFactory.eINSTANCE.createOGCAPIFeaturesCollectionsWrapper();
@@ -111,7 +102,7 @@ public class CollectionsServiceImpl implements CollectionsService {
 				collectionId);
 
 		if (collection != null) {
-			createOGCAPIFeaturesCollectionLinks(collection, baseUrl, mediaType);
+			createOGCAPIFeaturesCollectionLinks(collection, true, baseUrl, mediaType);
 		}
 
 		return collection;
@@ -129,9 +120,29 @@ public class CollectionsServiceImpl implements CollectionsService {
 		Objects.requireNonNull(mediaType, "Media type is required!");
 
 		if (bboxOptional.isPresent()) {
-			return getItems(collectionId, bboxOptional.get(), baseUrl, mediaType);
+			return getItems(collectionId, bboxOptional.get(), CollectionsService.ITEMS_LIMIT_DEFAULT,
+					CollectionsService.ITEMS_OFFSET_DEFAULT, baseUrl, mediaType);
 		} else {
-			return getItems(collectionId, baseUrl, mediaType);
+			return getItems(collectionId, CollectionsService.ITEMS_LIMIT_DEFAULT,
+					CollectionsService.ITEMS_OFFSET_DEFAULT, baseUrl, mediaType);
+		}
+	}
+
+	/* 
+	 * (non-Javadoc)
+	 * @see de.jena.ogc_features.service.api.CollectionsService#getItems(java.lang.String, java.util.Optional, long, long, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public FeatureCollection getItems(String collectionId, Optional<BoundingBox> bboxOptional, long limit, long offset,
+			String baseUrl, String mediaType) {
+		Objects.requireNonNull(collectionId, "Collection Id is required!");
+		Objects.requireNonNull(baseUrl, "Base URL is required!");
+		Objects.requireNonNull(mediaType, "Media type is required!");
+
+		if (bboxOptional.isPresent()) {
+			return getItems(collectionId, bboxOptional.get(), limit, offset, baseUrl, mediaType);
+		} else {
+			return getItems(collectionId, limit, offset, baseUrl, mediaType);
 		}
 	}
 
@@ -146,6 +157,20 @@ public class CollectionsServiceImpl implements CollectionsService {
 		Objects.requireNonNull(mediaType, "Media type is required!");
 
 		return getItems(collectionId, maybeParseBboxParam(bbox), baseUrl, mediaType);
+	}
+
+	/* 
+	 * (non-Javadoc)
+	 * @see de.jena.ogc_features.service.api.CollectionsService#getItems(java.lang.String, java.lang.String, long, long, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public FeatureCollection getItems(String collectionId, String bbox, long limit, long offset, String baseUrl,
+			String mediaType) {
+		Objects.requireNonNull(collectionId, "Collection Id is required!");
+		Objects.requireNonNull(baseUrl, "Base URL is required!");
+		Objects.requireNonNull(mediaType, "Media type is required!");
+
+		return getItems(collectionId, maybeParseBboxParam(bbox), limit, offset, baseUrl, mediaType);
 	}
 
 	/* 
@@ -192,41 +217,64 @@ public class CollectionsServiceImpl implements CollectionsService {
 		return feature;
 	}
 
-	private FeatureCollection getItems(String collectionId, BoundingBox bbox, String baseUrl, String mediaType) {
+	private FeatureCollection getItems(String collectionId, BoundingBox bbox, long limit, long offset, String baseUrl,
+			String mediaType) {
 		FeatureCollection featureCollection = GeoJSONFactory.eINSTANCE.createFeatureCollection();
 		featureCollection.setId(collectionId);
 
 		List<Feature> features = featureSearchService.searchFeaturesByBoundingBox(collectionId, bbox);
+
+		long totalCount = 0;
+
 		if (features != null && !features.isEmpty()) {
-			featureCollection.getFeatures().addAll(features);
+
+			totalCount = features.size();
+
+			// @formatter:off
+			List<Feature> limitedFeatures = features.stream()
+					.skip(offset)
+					.limit(limit)
+					.toList();
+			// @formatter:on			
+
+			featureCollection.getFeatures().addAll(limitedFeatures);
 		}
 
-		createFeatureCollectionLinks(featureCollection, collectionId, baseUrl, mediaType);
+		createFeatureCollectionLinks(featureCollection, collectionId, limit, offset, totalCount, baseUrl, mediaType);
 
 		return featureCollection;
 	}
 
-	private FeatureCollection getItems(String collectionId, String baseUrl, String mediaType) {
-		Optional<Integer> limit = Optional.empty(); // TODO: pagination
-
+	private FeatureCollection getItems(String collectionId, long limit, long offset, String baseUrl, String mediaType) {
 		QueryRepository queryRepo = (QueryRepository) emfRepository.getAdapter(QueryRepository.class);
 
 		// @formatter:off
-		IQueryBuilder queryBuilder = queryRepo.createQueryBuilder()
+		IQuery query = queryRepo.createQueryBuilder()
 				.column(GeoJSONPackage.Literals.FEATURE_COLLECTION__ID)
-				.simpleValue(collectionId);
+				.simpleValue(collectionId)
+				.build();
+		// @formatter:on		
 
-		IQuery query = (limit.isPresent()) ? 
-				queryBuilder.limit(limit.get().intValue()).build() : 
-					queryBuilder.build();
-		// @formatter:on
+		FeatureCollection featureCollection = EcoreUtil
+				.copy(queryRepo.getEObjectByQuery(GeoJSONPackage.Literals.FEATURE_COLLECTION, query, null));
 
-		FeatureCollection featureCollection = queryRepo.getEObjectByQuery(GeoJSONPackage.Literals.FEATURE_COLLECTION,
-				query, null);
+		long totalCount = 0;
 
-		if (featureCollection != null) {
-			createFeatureCollectionLinks(featureCollection, collectionId, baseUrl, mediaType);
+		if (!featureCollection.getFeatures().isEmpty()) {
+			totalCount = featureCollection.getFeatures().size();
+
+			// @formatter:off
+			List<Feature> limitedFeatures = featureCollection.getFeatures().stream()
+					.skip(offset)
+					.limit(limit)
+					.toList();
+			// @formatter:on
+
+			featureCollection.getFeatures().clear();
+			featureCollection.getFeatures().addAll(limitedFeatures);
 		}
+
+		createFeatureCollectionLinks(featureCollection, collectionId, limit, offset, totalCount, baseUrl, mediaType);
 
 		return featureCollection;
 	}
@@ -256,11 +304,13 @@ public class CollectionsServiceImpl implements CollectionsService {
 		}
 	}
 
-	private void createOGCAPIFeaturesCollectionLinks(OGCAPIFeaturesCollection collection, String baseUrl,
-			String mediaType) {
-		LinkType selfLink = LinksUtil.INSTANCE
-				.createSelfLink(String.format("%s/collections/%s", baseUrl, collection.getId()), mediaType);
-		collection.getLinks().add(selfLink);
+	private void createOGCAPIFeaturesCollectionLinks(OGCAPIFeaturesCollection collection, boolean showSelfLink,
+			String baseUrl, String mediaType) {
+		if (showSelfLink) {
+			LinkType selfLink = LinksUtil.INSTANCE
+					.createSelfLink(String.format("%s/collections/%s", baseUrl, collection.getId()), mediaType);
+			collection.getLinks().add(selfLink);
+		}
 
 		LinkType itemsLink = LinksUtil.INSTANCE.createLink(
 				String.format("%s/collections/%s/items", baseUrl, collection.getId()), "items",
@@ -268,15 +318,46 @@ public class CollectionsServiceImpl implements CollectionsService {
 		collection.getLinks().add(itemsLink);
 	}
 
-	private void createFeatureCollectionLinks(FeatureCollection featureCollection, String collectionId, String baseUrl,
-			String mediaType) {
+	private void createFeatureCollectionLinks(FeatureCollection featureCollection, String collectionId, long limit,
+			long offset, long totalCount, String baseUrl, String mediaType) {
 		LinkType selfLink = LinksUtil.INSTANCE
 				.createSelfLink(String.format("%s/collections/%s/items", baseUrl, collectionId), mediaType);
 		featureCollection.getLinks().add(selfLink);
 
-		LinkType nextLink = LinksUtil.INSTANCE
-				.createNextLink(String.format("%s/collections/%s/items?next=TODO", baseUrl, collectionId), mediaType);
-		featureCollection.getLinks().add(nextLink);
+		if (hasNextPage(limit, offset, totalCount)) {
+			LinkType nextPageLink = LinksUtil.INSTANCE.createNextPageLink(
+					String.format("%s/collections/%s/items?offset=%d", baseUrl, collectionId, (offset + limit)),
+					mediaType);
+			featureCollection.getLinks().add(nextPageLink);
+		}
+
+		if (offset > 0) {
+			LinkType previousPageLink = LinksUtil.INSTANCE
+					.createPreviousPageLink(String.format("%s/collections/%s/items?offset=%d", baseUrl, collectionId,
+							calculatePreviousPageOffset(limit, offset)), mediaType);
+			featureCollection.getLinks().add(previousPageLink);
+
+			LinkType firstPageLink = LinksUtil.INSTANCE
+					.createFirstPageLink(String.format("%s/collections/%s/items", baseUrl, collectionId), mediaType);
+			featureCollection.getLinks().add(firstPageLink);
+		}
+	}
+
+	private boolean hasNextPage(long limit, long offset, long totalCount) {
+		if ((offset + limit) > totalCount) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	private long calculatePreviousPageOffset(long limit, long offset) {
+		long previousPageOffset = (offset - limit);
+		if (previousPageOffset > 0) {
+			return previousPageOffset;
+		} else {
+			return 0;
+		}
 	}
 
 	private void createFeatureLinks(Feature feature, String collectionId, String featureId, String baseUrl,

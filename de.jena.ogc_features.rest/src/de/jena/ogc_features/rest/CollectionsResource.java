@@ -112,11 +112,15 @@ public class CollectionsResource {
 					"Data" })
 	public Response getItems(
 			@NotBlank(message = "Please provide collection Id") @PathParam(value = "collectionId") @Parameter(name = "collectionId", required = true) String collectionId,
-			@QueryParam("bbox") @Parameter(name = "bbox", required = false) String bbox) {
+			@QueryParam("bbox") @Parameter(name = "bbox", required = false) String bbox,
+			@QueryParam("limit") @Parameter(name = "limit", required = false) Long limit,
+			@QueryParam("offset") @Parameter(name = "offset", required = false) Long offset) {
 
 		String baseUrl = BaseUrlUtil.INSTANCE.getBaseUrl(jakartarsServiceRuntime.getRuntimeDTO());
 
-		FeatureCollection featureCollection = collectionsService.getItems(collectionId, bbox, baseUrl,
+		FeatureCollection featureCollection = collectionsService.getItems(collectionId, bbox,
+				(limit != null) ? limit.longValue() : CollectionsService.ITEMS_LIMIT_DEFAULT,
+				(offset != null) ? offset.longValue() : CollectionsService.ITEMS_OFFSET_DEFAULT, baseUrl,
 				MediaType.APPLICATION_JSON);
 
 		if (featureCollection == null) {

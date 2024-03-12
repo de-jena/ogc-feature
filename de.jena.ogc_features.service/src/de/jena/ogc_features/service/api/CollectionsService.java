@@ -29,6 +29,10 @@ import net.opengis.ogcapi.features.core.OGCAPIFeaturesCollectionsWrapper;
 @ProviderType
 public interface CollectionsService {
 
+	static final long ITEMS_LIMIT_DEFAULT = 10;
+	
+	static final long ITEMS_OFFSET_DEFAULT = 0;
+
 	/**
 	 * Lists collections of data that can be queried.
 	 * 
@@ -61,6 +65,9 @@ public interface CollectionsService {
 	FeatureCollection getItems(String collectionId, Optional<BoundingBox> bboxOptional, String baseUrl,
 			String mediaType);
 
+	FeatureCollection getItems(String collectionId, Optional<BoundingBox> bboxOptional, long limit, long offset,
+			String baseUrl, String mediaType);
+
 	/**
 	 * Retrieves all data in a specific collection, within a given bounding box.
 	 * 
@@ -74,6 +81,9 @@ public interface CollectionsService {
 	 * @return
 	 */
 	FeatureCollection getItems(String collectionId, String bbox, String baseUrl, String mediaType);
+
+	FeatureCollection getItems(String collectionId, String bbox, long limit, long offset, String baseUrl,
+			String mediaType);
 
 	/**
 	 * Retrieves specific 'feature' from a given collection.
