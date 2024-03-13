@@ -186,11 +186,6 @@ public class CollectionsServiceImpl implements CollectionsService {
 
 		QueryRepository queryRepo = (QueryRepository) emfRepository.getAdapter(QueryRepository.class);
 
-		// TODO: clarify whether query can contain columns from both container and
-		// contained (i.e. 'GeoJSONPackage.Literals.FEATURE_COLLECTION__ID' and
-		// 'GeoJSONPackage.Literals.FEATURE__ID'), because if it can, then
-		// 'queryRepo.getEObjectByQuery(GeoJSONPackage.Literals.FEATURE, query..)' could
-		// be used instead
 		// @formatter:off
 		IQuery query = queryRepo.createQueryBuilder()
 				.column(GeoJSONPackage.Literals.FEATURE_COLLECTION__ID)
@@ -279,6 +274,7 @@ public class CollectionsServiceImpl implements CollectionsService {
 		return featureCollection;
 	}
 
+	// input format: xMin,yMin,xMax,yMax
 	private Optional<BoundingBox> maybeParseBboxParam(String bboxParam) {
 		if (bboxParam == null || bboxParam.isBlank()) {
 			return Optional.empty();
@@ -292,12 +288,12 @@ public class CollectionsServiceImpl implements CollectionsService {
 		try {
 			BoundingBox bbox = coreFactory.eINSTANCE.createBoundingBox();
 
-			bbox.getLowerCorner().add(Double.parseDouble(bboxParamArr[0])); // xMin
-			bbox.getLowerCorner().add(Double.parseDouble(bboxParamArr[1])); // yMin
-
-			bbox.getUpperCorner().add(Double.parseDouble(bboxParamArr[2])); // xMax
-			bbox.getUpperCorner().add(Double.parseDouble(bboxParamArr[3])); // yMax
-
+			bbox.setLowerCorner(
+					new Double[] { Double.parseDouble(bboxParamArr[0]), Double.parseDouble(bboxParamArr[1]) }); // xMin,
+																												// yMin
+			bbox.setUpperCorner(
+					new Double[] { Double.parseDouble(bboxParamArr[2]), Double.parseDouble(bboxParamArr[3]) }); // xMax,
+																												// yMax
 			return Optional.of(bbox);
 		} catch (Throwable t) {
 			return Optional.empty();

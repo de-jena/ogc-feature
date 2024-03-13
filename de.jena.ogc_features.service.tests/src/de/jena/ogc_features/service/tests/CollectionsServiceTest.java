@@ -17,6 +17,7 @@ import static de.jena.ogc_features.service.tests.helper.CollectionsServiceTestHe
 import static de.jena.ogc_features.service.tests.helper.CollectionsServiceTestHelper.createFeatureCollection;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Optional;
@@ -337,30 +338,32 @@ public class CollectionsServiceTest {
 		CollectionsService collectionsService = collectionsServiceAware.getService();
 		assertThat(collectionsService).isNotNull();
 
-		BoundingBox bBox = createBoundingBox(23.44520990129783, 62.90926279828699, 22.995181481178577,
-				63.03308720293944);
+		// @formatter:off
+		BoundingBox bBox = createBoundingBox(
+				22.995181481178577, // xMin
+				62.90926279828699, // yMin
+				23.44520990129783, // xMax
+				63.03308720293944); // yMax
+		// @formatter:on
 
 		FeatureCollection featureCollection = collectionsService.getItems(COLLECTION_ID, Optional.of(bBox), BASE_URL,
 				MEDIA_TYPE);
 		assertThat(featureCollection).isNotNull();
-		assertThat(featureCollection.getFeatures()).size().isEqualTo(3);
+		assertFalse(featureCollection.getFeatures().isEmpty());
 
-		boolean hasPointGeometryTypeFeature = false, hasLineStringGeometryTypeFeature = false,
-				hasPolygonGeometryTypeFeature = false;
+		boolean hasPoint1GeometryTypeFeature = featureCollection.getFeatures().stream().anyMatch(
+				f -> ((GeometryType.POINT == f.getGeometry().getType()) && POINT_1_FEATURE_ID.equals(f.getId())));
 
-		for (Feature feature : featureCollection.getFeatures()) {
-			if (GeometryType.POINT == feature.getGeometry().getType()) {
-				hasPointGeometryTypeFeature = true;
-			} else if (GeometryType.LINE_STRING == feature.getGeometry().getType()) {
-				hasLineStringGeometryTypeFeature = true;
-			} else if (GeometryType.POLYGON == feature.getGeometry().getType()) {
-				hasPolygonGeometryTypeFeature = true;
-			}
-		}
+		boolean hasLineString1GeometryTypeFeature = featureCollection.getFeatures().stream()
+				.anyMatch(f -> ((GeometryType.LINE_STRING == f.getGeometry().getType())
+						&& LINESTRING_1_FEATURE_ID.equals(f.getId())));
 
-		assertTrue(hasPointGeometryTypeFeature);
-		assertTrue(hasLineStringGeometryTypeFeature);
-		assertTrue(hasPolygonGeometryTypeFeature);
+		boolean hasPolygon1GeometryTypeFeature = featureCollection.getFeatures().stream().anyMatch(
+				f -> ((GeometryType.POLYGON == f.getGeometry().getType()) && POLYGON_1_FEATURE_ID.equals(f.getId())));
+
+		assertTrue(hasPoint1GeometryTypeFeature);
+		assertTrue(hasLineString1GeometryTypeFeature);
+		assertTrue(hasPolygon1GeometryTypeFeature);
 	}
 
 	@Test
@@ -372,8 +375,13 @@ public class CollectionsServiceTest {
 		CollectionsService collectionsService = collectionsServiceAware.getService();
 		assertThat(collectionsService).isNotNull();
 
-		BoundingBox emptyBBox = createBoundingBox(23.328572789287676, 62.86071349864713, 23.20756946749117,
-				62.89630242864419);
+		// @formatter:off
+		BoundingBox emptyBBox = createBoundingBox(
+				23.20756946749117, // xMin
+				62.86071349864713, // yMin
+				23.328572789287676, // xMax
+				62.89630242864419); // yMax
+		// @formatter:on
 
 		FeatureCollection featureCollection = collectionsService.getItems(COLLECTION_ID, Optional.of(emptyBBox),
 				BASE_URL, MEDIA_TYPE);
@@ -396,10 +404,6 @@ public class CollectionsServiceTest {
 		assertThat(pointFeature.getGeometry()).isNotNull();
 		assertEquals(GeometryType.POINT, pointFeature.getGeometry().getType());
 	}
-
-	// TODO: getQueryables(String collectionId)
-
-	// TODO: getSchema(String collectionId)
 
 	@BeforeEach
 	public void setup(

@@ -68,14 +68,20 @@ public class FeatureSearchServiceImpl implements FeatureSearchService {
 		Objects.requireNonNull(collectionId, "Collection Id is required!");
 		Objects.requireNonNull(bbox, "Bounding Box is required!");
 
+		double minLongitude = bbox.getLowerCorner()[0];
+		double minLatitude = bbox.getLowerCorner()[1];
+
+		double maxLongitude = bbox.getUpperCorner()[0];
+		double maxLatitude = bbox.getUpperCorner()[1];
+
 		// @formatter:off
 		Query query = LatLonShape.newBoxQuery(
 				FeatureIndexServiceHelper.GEOMETRY_COORDINATES,
 				ShapeField.QueryRelation.INTERSECTS,
-				bbox.getLowerCorner().get(1), // minLatitude
-				bbox.getUpperCorner().get(1), // maxLatitude
-				bbox.getLowerCorner().get(0), // minLongitude
-				bbox.getUpperCorner().get(0) // maxLongitude
+				minLatitude,
+				maxLatitude,
+				minLongitude,
+				maxLongitude
 			);
 		// @formatter:on
 

@@ -96,11 +96,8 @@ public class CollectionsServiceTestHelper {
 	public static BoundingBox createBoundingBox(double xMin, double yMin, double xMax, double yMax) {
 		BoundingBox bbox = coreFactory.eINSTANCE.createBoundingBox();
 
-		bbox.getLowerCorner().add(xMin);
-		bbox.getLowerCorner().add(yMin);
-
-		bbox.getUpperCorner().add(xMax);
-		bbox.getUpperCorner().add(yMax);
+		bbox.setLowerCorner(new Double[] { xMin, yMin }); // xMin, yMin
+		bbox.setUpperCorner(new Double[] { xMax, yMax }); // xMax, yMax
 
 		return bbox;
 	}

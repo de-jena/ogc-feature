@@ -93,6 +93,13 @@ public class corePackageImpl extends EPackageImpl implements corePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EDataType array1DEDataType = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EDataType array2DEDataType = null;
 
 	/**
@@ -495,6 +502,16 @@ public class corePackageImpl extends EPackageImpl implements corePackage {
 	 * @generated
 	 */
 	@Override
+	public EDataType getArray1D() {
+		return array1DEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EDataType getArray2D() {
 		return array2DEDataType;
 	}
@@ -570,6 +587,7 @@ public class corePackageImpl extends EPackageImpl implements corePackage {
 		createEAttribute(temporalExtentEClass, TEMPORAL_EXTENT__TRS);
 
 		// Create data types
+		array1DEDataType = createEDataType(ARRAY1_D);
 		array2DEDataType = createEDataType(ARRAY2_D);
 	}
 
@@ -608,8 +626,8 @@ public class corePackageImpl extends EPackageImpl implements corePackage {
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(boundingBoxEClass, BoundingBox.class, "BoundingBox", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getBoundingBox_LowerCorner(), ecorePackage.getEDoubleObject(), "lowerCorner", null, 2, 2, BoundingBox.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBoundingBox_UpperCorner(), ecorePackage.getEDoubleObject(), "upperCorner", null, 2, 2, BoundingBox.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoundingBox_LowerCorner(), this.getArray1D(), "lowerCorner", null, 1, 1, BoundingBox.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoundingBox_UpperCorner(), this.getArray1D(), "upperCorner", null, 1, 1, BoundingBox.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBoundingBox_Crs(), theXMLTypePackage.getAnyURI(), "crs", null, 0, 1, BoundingBox.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBoundingBox_Dimensions(), theXMLTypePackage.getPositiveInteger(), "dimensions", null, 0, 1, BoundingBox.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -649,6 +667,7 @@ public class corePackageImpl extends EPackageImpl implements corePackage {
 		initEAttribute(getTemporalExtent_Trs(), theXMLTypePackage.getAnyURI(), "trs", null, 0, 1, TemporalExtent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize data types
+		initEDataType(array1DEDataType, Double[].class, "Array1D", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(array2DEDataType, Double[][].class, "Array2D", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource

@@ -78,6 +78,8 @@ public class coreFactoryImpl extends EFactoryImpl implements coreFactory {
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
+			case corePackage.ARRAY1_D:
+				return createArray1DFromString(eDataType, initialValue);
 			case corePackage.ARRAY2_D:
 				return createArray2DFromString(eDataType, initialValue);
 			default:
@@ -93,6 +95,8 @@ public class coreFactoryImpl extends EFactoryImpl implements coreFactory {
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
+			case corePackage.ARRAY1_D:
+				return convertArray1DToString(eDataType, instanceValue);
 			case corePackage.ARRAY2_D:
 				return convertArray2DToString(eDataType, instanceValue);
 			default:
@@ -186,6 +190,24 @@ public class coreFactoryImpl extends EFactoryImpl implements coreFactory {
 	public TemporalExtent createTemporalExtent() {
 		TemporalExtentImpl temporalExtent = new TemporalExtentImpl();
 		return temporalExtent;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Double[] createArray1DFromString(EDataType eDataType, String initialValue) {
+		return (Double[])super.createFromString(initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertArray1DToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(instanceValue);
 	}
 
 	/**

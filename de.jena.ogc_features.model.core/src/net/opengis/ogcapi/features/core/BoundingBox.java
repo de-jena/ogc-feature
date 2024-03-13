@@ -4,8 +4,6 @@ package net.opengis.ogcapi.features.core;
 
 import java.math.BigInteger;
 
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 import org.osgi.annotation.versioning.ProviderType;
@@ -32,28 +30,48 @@ import org.osgi.annotation.versioning.ProviderType;
 @ProviderType
 public interface BoundingBox extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Lower Corner</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Double}.
+	 * Returns the value of the '<em><b>Lower Corner</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Lower Corner</em>' attribute list.
+	 * @return the value of the '<em>Lower Corner</em>' attribute.
+	 * @see #setLowerCorner(Double[])
 	 * @see net.opengis.ogcapi.features.core.corePackage#getBoundingBox_LowerCorner()
-	 * @model lower="2" upper="2"
+	 * @model dataType="net.opengis.ogcapi.features.core.Array1D" required="true"
 	 * @generated
 	 */
-	EList<Double> getLowerCorner();
+	Double[] getLowerCorner();
 
 	/**
-	 * Returns the value of the '<em><b>Upper Corner</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Double}.
+	 * Sets the value of the '{@link net.opengis.ogcapi.features.core.BoundingBox#getLowerCorner <em>Lower Corner</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Upper Corner</em>' attribute list.
-	 * @see net.opengis.ogcapi.features.core.corePackage#getBoundingBox_UpperCorner()
-	 * @model lower="2" upper="2"
+	 * @param value the new value of the '<em>Lower Corner</em>' attribute.
+	 * @see #getLowerCorner()
 	 * @generated
 	 */
-	EList<Double> getUpperCorner();
+	void setLowerCorner(Double[] value);
+
+	/**
+	 * Returns the value of the '<em><b>Upper Corner</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Upper Corner</em>' attribute.
+	 * @see #setUpperCorner(Double[])
+	 * @see net.opengis.ogcapi.features.core.corePackage#getBoundingBox_UpperCorner()
+	 * @model dataType="net.opengis.ogcapi.features.core.Array1D" required="true"
+	 * @generated
+	 */
+	Double[] getUpperCorner();
+
+	/**
+	 * Sets the value of the '{@link net.opengis.ogcapi.features.core.BoundingBox#getUpperCorner <em>Upper Corner</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Upper Corner</em>' attribute.
+	 * @see #getUpperCorner()
+	 * @generated
+	 */
+	void setUpperCorner(Double[] value);
 
 	/**
 	 * Returns the value of the '<em><b>Crs</b></em>' attribute.

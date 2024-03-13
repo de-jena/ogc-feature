@@ -151,10 +151,4 @@ public class CollectionsResource {
 
 		return Response.ok(feature).build();
 	}
-
-	// 'GET /collections/{collectionId}/queryables'
-	// getQueryables
-
-	// 'GET /collections/{collectionId}/schema'
-	// getSchema
 }

@@ -30,7 +30,7 @@ import net.opengis.ogcapi.features.core.OGCAPIFeaturesCollectionsWrapper;
 public interface CollectionsService {
 
 	static final long ITEMS_LIMIT_DEFAULT = 10;
-	
+
 	static final long ITEMS_OFFSET_DEFAULT = 0;
 
 	/**
@@ -95,8 +95,4 @@ public interface CollectionsService {
 	 * @return
 	 */
 	Feature getItem(String collectionId, String featureId, String baseUrl, String mediaType);
-
-	// TODO: getQueryables(String collectionId)
-
-	// TODO: getSchema(String collectionId)
 }

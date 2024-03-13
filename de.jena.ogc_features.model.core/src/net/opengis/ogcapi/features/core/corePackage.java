@@ -75,7 +75,7 @@ public interface corePackage extends org.eclipse.emf.ecore.EPackage {
 	int BOUNDING_BOX = 0;
 
 	/**
-	 * The feature id for the '<em><b>Lower Corner</b></em>' attribute list.
+	 * The feature id for the '<em><b>Lower Corner</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -84,7 +84,7 @@ public interface corePackage extends org.eclipse.emf.ecore.EPackage {
 	int BOUNDING_BOX__LOWER_CORNER = 0;
 
 	/**
-	 * The feature id for the '<em><b>Upper Corner</b></em>' attribute list.
+	 * The feature id for the '<em><b>Upper Corner</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -514,13 +514,22 @@ public interface corePackage extends org.eclipse.emf.ecore.EPackage {
 	int TEMPORAL_EXTENT_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '<em>Array1 D</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see net.opengis.ogcapi.features.core.impl.corePackageImpl#getArray1D()
+	 * @generated
+	 */
+	int ARRAY1_D = 8;
+
+	/**
 	 * The meta object id for the '<em>Array2 D</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see net.opengis.ogcapi.features.core.impl.corePackageImpl#getArray2D()
 	 * @generated
 	 */
-	int ARRAY2_D = 8;
+	int ARRAY2_D = 9;
 
 
 	/**
@@ -534,10 +543,10 @@ public interface corePackage extends org.eclipse.emf.ecore.EPackage {
 	EClass getBoundingBox();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link net.opengis.ogcapi.features.core.BoundingBox#getLowerCorner <em>Lower Corner</em>}'.
+	 * Returns the meta object for the attribute '{@link net.opengis.ogcapi.features.core.BoundingBox#getLowerCorner <em>Lower Corner</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Lower Corner</em>'.
+	 * @return the meta object for the attribute '<em>Lower Corner</em>'.
 	 * @see net.opengis.ogcapi.features.core.BoundingBox#getLowerCorner()
 	 * @see #getBoundingBox()
 	 * @generated
@@ -545,10 +554,10 @@ public interface corePackage extends org.eclipse.emf.ecore.EPackage {
 	EAttribute getBoundingBox_LowerCorner();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link net.opengis.ogcapi.features.core.BoundingBox#getUpperCorner <em>Upper Corner</em>}'.
+	 * Returns the meta object for the attribute '{@link net.opengis.ogcapi.features.core.BoundingBox#getUpperCorner <em>Upper Corner</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Upper Corner</em>'.
+	 * @return the meta object for the attribute '<em>Upper Corner</em>'.
 	 * @see net.opengis.ogcapi.features.core.BoundingBox#getUpperCorner()
 	 * @see #getBoundingBox()
 	 * @generated
@@ -879,6 +888,16 @@ public interface corePackage extends org.eclipse.emf.ecore.EPackage {
 	EAttribute getTemporalExtent_Trs();
 
 	/**
+	 * Returns the meta object for data type '<em>Array1 D</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>Array1 D</em>'.
+	 * @model instanceClass="java.lang.Double[]"
+	 * @generated
+	 */
+	EDataType getArray1D();
+
+	/**
 	 * Returns the meta object for data type '<em>Array2 D</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -922,7 +941,7 @@ public interface corePackage extends org.eclipse.emf.ecore.EPackage {
 		EClass BOUNDING_BOX = eINSTANCE.getBoundingBox();
 
 		/**
-		 * The meta object literal for the '<em><b>Lower Corner</b></em>' attribute list feature.
+		 * The meta object literal for the '<em><b>Lower Corner</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -930,7 +949,7 @@ public interface corePackage extends org.eclipse.emf.ecore.EPackage {
 		EAttribute BOUNDING_BOX__LOWER_CORNER = eINSTANCE.getBoundingBox_LowerCorner();
 
 		/**
-		 * The meta object literal for the '<em><b>Upper Corner</b></em>' attribute list feature.
+		 * The meta object literal for the '<em><b>Upper Corner</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1190,6 +1209,15 @@ public interface corePackage extends org.eclipse.emf.ecore.EPackage {
 		 * @generated
 		 */
 		EAttribute TEMPORAL_EXTENT__TRS = eINSTANCE.getTemporalExtent_Trs();
+
+		/**
+		 * The meta object literal for the '<em>Array1 D</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see net.opengis.ogcapi.features.core.impl.corePackageImpl#getArray1D()
+		 * @generated
+		 */
+		EDataType ARRAY1_D = eINSTANCE.getArray1D();
 
 		/**
 		 * The meta object literal for the '<em>Array2 D</em>' data type.

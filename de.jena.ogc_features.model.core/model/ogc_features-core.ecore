@@ -5,10 +5,10 @@
     <details key="value" value="1.0.1"/>
   </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="BoundingBox">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lowerCorner" lowerBound="2"
-        upperBound="2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDoubleObject"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="upperCorner" lowerBound="2"
-        upperBound="2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDoubleObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lowerCorner" lowerBound="1"
+        eType="#//Array1D"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="upperCorner" lowerBound="1"
+        eType="#//Array1D"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="crs" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//AnyURI"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dimensions" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//PositiveInteger"/>
   </eClassifiers>
@@ -64,5 +64,6 @@
         eType="#//Array2D"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="trs" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//AnyURI"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="Array1D" instanceClassName="java.lang.Double[]"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Array2D" instanceClassName="java.lang.Double[][]"/>
 </ecore:EPackage>

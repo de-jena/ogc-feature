@@ -8,6 +8,7 @@
   <foreignModel>ogc_features-core.ecore</foreignModel>
   <genPackages prefix="core" basePackage="net.opengis.ogcapi.features" resource="XMI"
       disposableProviderFactory="true" ecorePackage="ogc_features-core.ecore#/">
+    <genDataTypes ecoreDataType="ogc_features-core.ecore#//Array1D"/>
     <genDataTypes ecoreDataType="ogc_features-core.ecore#//Array2D"/>
     <genClasses ecoreClass="ogc_features-core.ecore#//BoundingBox">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ogc_features-core.ecore#//BoundingBox/lowerCorner"/>

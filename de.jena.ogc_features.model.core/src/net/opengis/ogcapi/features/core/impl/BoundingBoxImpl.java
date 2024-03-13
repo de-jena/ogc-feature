@@ -4,21 +4,15 @@ package net.opengis.ogcapi.features.core.impl;
 
 import java.math.BigInteger;
 
-import java.util.Collection;
-
 import net.opengis.ogcapi.features.core.BoundingBox;
 import net.opengis.ogcapi.features.core.corePackage;
 
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,24 +32,44 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
  */
 public class BoundingBoxImpl extends MinimalEObjectImpl.Container implements BoundingBox {
 	/**
-	 * The cached value of the '{@link #getLowerCorner() <em>Lower Corner</em>}' attribute list.
+	 * The default value of the '{@link #getLowerCorner() <em>Lower Corner</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getLowerCorner()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Double> lowerCorner;
+	protected static final Double[] LOWER_CORNER_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getUpperCorner() <em>Upper Corner</em>}' attribute list.
+	 * The cached value of the '{@link #getLowerCorner() <em>Lower Corner</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLowerCorner()
+	 * @generated
+	 * @ordered
+	 */
+	protected Double[] lowerCorner = LOWER_CORNER_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getUpperCorner() <em>Upper Corner</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getUpperCorner()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Double> upperCorner;
+	protected static final Double[] UPPER_CORNER_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getUpperCorner() <em>Upper Corner</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUpperCorner()
+	 * @generated
+	 * @ordered
+	 */
+	protected Double[] upperCorner = UPPER_CORNER_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getCrs() <em>Crs</em>}' attribute.
@@ -122,10 +136,7 @@ public class BoundingBoxImpl extends MinimalEObjectImpl.Container implements Bou
 	 * @generated
 	 */
 	@Override
-	public EList<Double> getLowerCorner() {
-		if (lowerCorner == null) {
-			lowerCorner = new EDataTypeUniqueEList<Double>(Double.class, this, corePackage.BOUNDING_BOX__LOWER_CORNER);
-		}
+	public Double[] getLowerCorner() {
 		return lowerCorner;
 	}
 
@@ -135,11 +146,34 @@ public class BoundingBoxImpl extends MinimalEObjectImpl.Container implements Bou
 	 * @generated
 	 */
 	@Override
-	public EList<Double> getUpperCorner() {
-		if (upperCorner == null) {
-			upperCorner = new EDataTypeUniqueEList<Double>(Double.class, this, corePackage.BOUNDING_BOX__UPPER_CORNER);
-		}
+	public void setLowerCorner(Double[] newLowerCorner) {
+		Double[] oldLowerCorner = lowerCorner;
+		lowerCorner = newLowerCorner;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, corePackage.BOUNDING_BOX__LOWER_CORNER, oldLowerCorner, lowerCorner));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Double[] getUpperCorner() {
 		return upperCorner;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setUpperCorner(Double[] newUpperCorner) {
+		Double[] oldUpperCorner = upperCorner;
+		upperCorner = newUpperCorner;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, corePackage.BOUNDING_BOX__UPPER_CORNER, oldUpperCorner, upperCorner));
 	}
 
 	/**
@@ -213,17 +247,14 @@ public class BoundingBoxImpl extends MinimalEObjectImpl.Container implements Bou
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case corePackage.BOUNDING_BOX__LOWER_CORNER:
-				getLowerCorner().clear();
-				getLowerCorner().addAll((Collection<? extends Double>)newValue);
+				setLowerCorner((Double[])newValue);
 				return;
 			case corePackage.BOUNDING_BOX__UPPER_CORNER:
-				getUpperCorner().clear();
-				getUpperCorner().addAll((Collection<? extends Double>)newValue);
+				setUpperCorner((Double[])newValue);
 				return;
 			case corePackage.BOUNDING_BOX__CRS:
 				setCrs((String)newValue);
@@ -244,10 +275,10 @@ public class BoundingBoxImpl extends MinimalEObjectImpl.Container implements Bou
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case corePackage.BOUNDING_BOX__LOWER_CORNER:
-				getLowerCorner().clear();
+				setLowerCorner(LOWER_CORNER_EDEFAULT);
 				return;
 			case corePackage.BOUNDING_BOX__UPPER_CORNER:
-				getUpperCorner().clear();
+				setUpperCorner(UPPER_CORNER_EDEFAULT);
 				return;
 			case corePackage.BOUNDING_BOX__CRS:
 				setCrs(CRS_EDEFAULT);
@@ -268,9 +299,9 @@ public class BoundingBoxImpl extends MinimalEObjectImpl.Container implements Bou
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case corePackage.BOUNDING_BOX__LOWER_CORNER:
-				return lowerCorner != null && !lowerCorner.isEmpty();
+				return LOWER_CORNER_EDEFAULT == null ? lowerCorner != null : !LOWER_CORNER_EDEFAULT.equals(lowerCorner);
 			case corePackage.BOUNDING_BOX__UPPER_CORNER:
-				return upperCorner != null && !upperCorner.isEmpty();
+				return UPPER_CORNER_EDEFAULT == null ? upperCorner != null : !UPPER_CORNER_EDEFAULT.equals(upperCorner);
 			case corePackage.BOUNDING_BOX__CRS:
 				return CRS_EDEFAULT == null ? crs != null : !CRS_EDEFAULT.equals(crs);
 			case corePackage.BOUNDING_BOX__DIMENSIONS:
