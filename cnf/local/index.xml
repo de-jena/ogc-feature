@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<repository xmlns="http://www.osgi.org/xmlns/repository/v1.0.0" name="Local" increment="1709939509684">
+<repository xmlns="http://www.osgi.org/xmlns/repository/v1.0.0" name="Local" increment="1714253914938">
   <resource>
     <capability namespace="osgi.identity">
       <attribute name="license" value="Eclipse Public License v1.0"/>
@@ -8,12 +8,12 @@
       <attribute name="documentation" value="https://github.com/geckoprojects-org/org.gecko.emf.persistence"/>
       <attribute name="description" value="EMF Mongo implementation"/>
       <attribute name="type" value="osgi.bundle"/>
-      <attribute name="version" value="6.1.1.202403082310-SNAPSHOT" type="Version"/>
+      <attribute name="version" value="6.1.1.202404272127-SNAPSHOT" type="Version"/>
     </capability>
     <capability namespace="osgi.wiring.package">
       <directive name="uses" value="com.mongodb.client,org.bson,org.eclipse.emf.ecore,org.eclipse.emf.ecore.impl"/>
       <attribute name="bundle-symbolic-name" value="org.gecko.emf.mongo.component"/>
-      <attribute name="bundle-version" value="6.1.1.202403082310-SNAPSHOT" type="Version"/>
+      <attribute name="bundle-version" value="6.1.1.202404272127-SNAPSHOT" type="Version"/>
       <attribute name="osgi.wiring.package" value="org.gecko.emf.mongo.model"/>
       <attribute name="version" value="2.1.0" type="Version"/>
       <attribute name="bnd.hashes" value="-1319971867,-1830778279,-1066733119,1425955268,-781912835,-1923478059" type="List&lt;Long&gt;"/>
@@ -21,7 +21,7 @@
     <capability namespace="osgi.wiring.package">
       <directive name="uses" value="org.eclipse.emf.common.notify,org.eclipse.emf.common.notify.impl,org.eclipse.emf.ecore,org.eclipse.emf.ecore.util,org.gecko.emf.mongo.model"/>
       <attribute name="bundle-symbolic-name" value="org.gecko.emf.mongo.component"/>
-      <attribute name="bundle-version" value="6.1.1.202403082310-SNAPSHOT" type="Version"/>
+      <attribute name="bundle-version" value="6.1.1.202404272127-SNAPSHOT" type="Version"/>
       <attribute name="osgi.wiring.package" value="org.gecko.emf.mongo.model.util"/>
       <attribute name="version" value="2.0.0" type="Version"/>
       <attribute name="bnd.hashes" value="-1467616732,-2135587939,-1923478059" type="List&lt;Long&gt;"/>
@@ -29,14 +29,14 @@
     <capability namespace="osgi.wiring.package">
       <directive name="uses" value="com.mongodb.client,org.bson,org.eclipse.emf.common.util,org.eclipse.emf.ecore,org.eclipse.emf.ecore.resource,org.gecko.emf.mongo.model"/>
       <attribute name="bundle-symbolic-name" value="org.gecko.emf.mongo.component"/>
-      <attribute name="bundle-version" value="6.1.1.202403082310-SNAPSHOT" type="Version"/>
+      <attribute name="bundle-version" value="6.1.1.202404272127-SNAPSHOT" type="Version"/>
       <attribute name="osgi.wiring.package" value="org.gecko.emf.mongo"/>
       <attribute name="version" value="5.0.0" type="Version"/>
       <attribute name="bnd.hashes" value="-1611070187,946598619,-622062112,587793354,1903449149,415178366,-7450167,127242,1913639392,1328673615,-1923478059" type="List&lt;Long&gt;"/>
     </capability>
     <capability namespace="osgi.wiring.package">
       <attribute name="bundle-symbolic-name" value="org.gecko.emf.mongo.component"/>
-      <attribute name="bundle-version" value="6.1.1.202403082310-SNAPSHOT" type="Version"/>
+      <attribute name="bundle-version" value="6.1.1.202404272127-SNAPSHOT" type="Version"/>
       <attribute name="osgi.wiring.package" value="org.gecko.emf.mongo.annotations"/>
       <attribute name="version" value="2.0.1" type="Version"/>
       <attribute name="bnd.hashes" value="-93143153,1657765794,-720407018,-1923478059" type="List&lt;Long&gt;"/>
@@ -44,7 +44,7 @@
     <capability namespace="osgi.wiring.package">
       <directive name="uses" value="org.eclipse.emf.ecore,org.gecko.emf.mongo"/>
       <attribute name="bundle-symbolic-name" value="org.gecko.emf.mongo.component"/>
-      <attribute name="bundle-version" value="6.1.1.202403082310-SNAPSHOT" type="Version"/>
+      <attribute name="bundle-version" value="6.1.1.202404272127-SNAPSHOT" type="Version"/>
       <attribute name="osgi.wiring.package" value="org.gecko.emf.mongo.converter"/>
       <attribute name="version" value="2.2.0" type="Version"/>
       <attribute name="bnd.hashes" value="1086101351,-942781873,2100180738,618696831,-1433464522,1357655827,-1923478059" type="List&lt;Long&gt;"/>
@@ -52,7 +52,7 @@
     <capability namespace="osgi.wiring.package">
       <directive name="uses" value="com.mongodb.client,org.eclipse.emf.common.util,org.eclipse.emf.ecore,org.eclipse.emf.ecore.xmi.impl"/>
       <attribute name="bundle-symbolic-name" value="org.gecko.emf.mongo.component"/>
-      <attribute name="bundle-version" value="6.1.1.202403082310-SNAPSHOT" type="Version"/>
+      <attribute name="bundle-version" value="6.1.1.202404272127-SNAPSHOT" type="Version"/>
       <attribute name="osgi.wiring.package" value="org.gecko.emf.mongo.util"/>
       <attribute name="version" value="2.2.0" type="Version"/>
       <attribute name="bnd.hashes" value="-347895454,-177881376,-1748708611,-1923478059" type="List&lt;Long&gt;"/>
@@ -60,7 +60,7 @@
     <capability namespace="osgi.wiring.package">
       <directive name="uses" value="com.mongodb.client,org.bson,org.eclipse.emf.common.util,org.eclipse.emf.ecore.resource,org.eclipse.emf.ecore.resource.impl,org.gecko.emf.mongo,org.gecko.emf.osgi,org.gecko.emf.osgi.configurator,org.gecko.mongo.osgi,org.osgi.service.component"/>
       <attribute name="bundle-symbolic-name" value="org.gecko.emf.mongo.component"/>
-      <attribute name="bundle-version" value="6.1.1.202403082310-SNAPSHOT" type="Version"/>
+      <attribute name="bundle-version" value="6.1.1.202404272127-SNAPSHOT" type="Version"/>
       <attribute name="osgi.wiring.package" value="org.gecko.emf.mongo.handlers"/>
       <attribute name="version" value="3.0.0" type="Version"/>
       <attribute name="bnd.hashes" value="-1210616883,-793512107,1698018600,-872645262,879568963,-1923478059" type="List&lt;Long&gt;"/>
@@ -68,7 +68,7 @@
     <capability namespace="osgi.wiring.package">
       <directive name="uses" value="org.bson,org.bson.codecs,org.bson.codecs.configuration,org.eclipse.emf.ecore,org.eclipse.emf.ecore.resource,org.eclipse.emf.ecore.util,org.gecko.emf.mongo,org.gecko.emf.mongo.codecs.builder"/>
       <attribute name="bundle-symbolic-name" value="org.gecko.emf.mongo.component"/>
-      <attribute name="bundle-version" value="6.1.1.202403082310-SNAPSHOT" type="Version"/>
+      <attribute name="bundle-version" value="6.1.1.202404272127-SNAPSHOT" type="Version"/>
       <attribute name="osgi.wiring.package" value="org.gecko.emf.mongo.codecs"/>
       <attribute name="version" value="3.0.0" type="Version"/>
       <attribute name="bnd.hashes" value="257793699,-1066853122,-2038434294,-874037984,-1923478059" type="List&lt;Long&gt;"/>
@@ -76,17 +76,17 @@
     <capability namespace="osgi.wiring.package">
       <directive name="uses" value="org.bson,org.bson.codecs,org.bson.codecs.configuration,org.eclipse.emf.common.util,org.eclipse.emf.ecore,org.eclipse.emf.ecore.resource,org.eclipse.emf.ecore.xmi,org.gecko.emf.mongo"/>
       <attribute name="bundle-symbolic-name" value="org.gecko.emf.mongo.component"/>
-      <attribute name="bundle-version" value="6.1.1.202403082310-SNAPSHOT" type="Version"/>
+      <attribute name="bundle-version" value="6.1.1.202404272127-SNAPSHOT" type="Version"/>
       <attribute name="osgi.wiring.package" value="org.gecko.emf.mongo.codecs.builder"/>
       <attribute name="version" value="2.0.0" type="Version"/>
       <attribute name="bnd.hashes" value="-2029128834,-1611736386,1314854679,1281526231,-1923478059" type="List&lt;Long&gt;"/>
     </capability>
     <capability namespace="osgi.wiring.bundle">
-      <attribute name="bundle-version" value="6.1.1.202403082310-SNAPSHOT" type="Version"/>
+      <attribute name="bundle-version" value="6.1.1.202404272127-SNAPSHOT" type="Version"/>
       <attribute name="osgi.wiring.bundle" value="org.gecko.emf.mongo.component"/>
     </capability>
     <capability namespace="osgi.wiring.host">
-      <attribute name="bundle-version" value="6.1.1.202403082310-SNAPSHOT" type="Version"/>
+      <attribute name="bundle-version" value="6.1.1.202404272127-SNAPSHOT" type="Version"/>
       <attribute name="osgi.wiring.host" value="org.gecko.emf.mongo.component"/>
     </capability>
     <capability namespace="org.gecko.osgi.emf.persistence">
@@ -97,10 +97,10 @@
       <attribute name="org.gecko.osgi.emf.persistence" value="mongo"/>
     </capability>
     <capability namespace="osgi.content">
-      <attribute name="size" value="193530" type="Long"/>
+      <attribute name="size" value="193522" type="Long"/>
       <attribute name="mime" value="application/vnd.osgi.bundle"/>
       <attribute name="url" value="org.gecko.emf.mongo.component/org.gecko.emf.mongo.component-6.1.1.jar"/>
-      <attribute name="osgi.content" value="88101E5F1935FF373330BD773368A525BD3ED4590596E13093A82AA71ACDDB21"/>
+      <attribute name="osgi.content" value="1B7112E0127D32757DCCB733F3C73B6A5AAF0FE6724A938D9562126A47C71EE2"/>
     </capability>
     <capability namespace="osgi.service">
       <directive name="uses" value="org.gecko.emf.mongo"/>
@@ -199,47 +199,47 @@
       <attribute name="osgi.wiring.package" value="org.bson.types"/>
     </requirement>
     <requirement namespace="osgi.wiring.package">
-      <directive name="filter" value="(&amp;(osgi.wiring.package=org.eclipse.emf.common.notify)(version&gt;=2.29.0)(!(version&gt;=3.0.0)))"/>
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.eclipse.emf.common.notify)(version&gt;=2.30.0)(!(version&gt;=3.0.0)))"/>
       <attribute name="osgi.wiring.package" value="org.eclipse.emf.common.notify"/>
     </requirement>
     <requirement namespace="osgi.wiring.package">
-      <directive name="filter" value="(&amp;(osgi.wiring.package=org.eclipse.emf.common.notify.impl)(version&gt;=2.29.0)(!(version&gt;=3.0.0)))"/>
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.eclipse.emf.common.notify.impl)(version&gt;=2.30.0)(!(version&gt;=3.0.0)))"/>
       <attribute name="osgi.wiring.package" value="org.eclipse.emf.common.notify.impl"/>
     </requirement>
     <requirement namespace="osgi.wiring.package">
-      <directive name="filter" value="(&amp;(osgi.wiring.package=org.eclipse.emf.common.util)(version&gt;=2.29.0)(!(version&gt;=3.0.0)))"/>
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.eclipse.emf.common.util)(version&gt;=2.30.0)(!(version&gt;=3.0.0)))"/>
       <attribute name="osgi.wiring.package" value="org.eclipse.emf.common.util"/>
     </requirement>
     <requirement namespace="osgi.wiring.package">
-      <directive name="filter" value="(&amp;(osgi.wiring.package=org.eclipse.emf.ecore)(version&gt;=2.35.0)(!(version&gt;=3.0.0)))"/>
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.eclipse.emf.ecore)(version&gt;=2.36.0)(!(version&gt;=3.0.0)))"/>
       <attribute name="osgi.wiring.package" value="org.eclipse.emf.ecore"/>
     </requirement>
     <requirement namespace="osgi.wiring.package">
-      <directive name="filter" value="(&amp;(osgi.wiring.package=org.eclipse.emf.ecore.impl)(version&gt;=2.35.0)(!(version&gt;=3.0.0)))"/>
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.eclipse.emf.ecore.impl)(version&gt;=2.36.0)(!(version&gt;=3.0.0)))"/>
       <attribute name="osgi.wiring.package" value="org.eclipse.emf.ecore.impl"/>
     </requirement>
     <requirement namespace="osgi.wiring.package">
-      <directive name="filter" value="(&amp;(osgi.wiring.package=org.eclipse.emf.ecore.plugin)(version&gt;=2.35.0)(!(version&gt;=3.0.0)))"/>
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.eclipse.emf.ecore.plugin)(version&gt;=2.36.0)(!(version&gt;=3.0.0)))"/>
       <attribute name="osgi.wiring.package" value="org.eclipse.emf.ecore.plugin"/>
     </requirement>
     <requirement namespace="osgi.wiring.package">
-      <directive name="filter" value="(&amp;(osgi.wiring.package=org.eclipse.emf.ecore.resource)(version&gt;=2.35.0)(!(version&gt;=3.0.0)))"/>
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.eclipse.emf.ecore.resource)(version&gt;=2.36.0)(!(version&gt;=3.0.0)))"/>
       <attribute name="osgi.wiring.package" value="org.eclipse.emf.ecore.resource"/>
     </requirement>
     <requirement namespace="osgi.wiring.package">
-      <directive name="filter" value="(&amp;(osgi.wiring.package=org.eclipse.emf.ecore.resource.impl)(version&gt;=2.35.0)(!(version&gt;=3.0.0)))"/>
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.eclipse.emf.ecore.resource.impl)(version&gt;=2.36.0)(!(version&gt;=3.0.0)))"/>
       <attribute name="osgi.wiring.package" value="org.eclipse.emf.ecore.resource.impl"/>
     </requirement>
     <requirement namespace="osgi.wiring.package">
-      <directive name="filter" value="(&amp;(osgi.wiring.package=org.eclipse.emf.ecore.util)(version&gt;=2.35.0)(!(version&gt;=3.0.0)))"/>
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.eclipse.emf.ecore.util)(version&gt;=2.36.0)(!(version&gt;=3.0.0)))"/>
       <attribute name="osgi.wiring.package" value="org.eclipse.emf.ecore.util"/>
     </requirement>
     <requirement namespace="osgi.wiring.package">
-      <directive name="filter" value="(&amp;(osgi.wiring.package=org.eclipse.emf.ecore.xmi)(version&gt;=2.36.0)(!(version&gt;=3.0.0)))"/>
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.eclipse.emf.ecore.xmi)(version&gt;=2.37.0)(!(version&gt;=3.0.0)))"/>
       <attribute name="osgi.wiring.package" value="org.eclipse.emf.ecore.xmi"/>
     </requirement>
     <requirement namespace="osgi.wiring.package">
-      <directive name="filter" value="(&amp;(osgi.wiring.package=org.eclipse.emf.ecore.xmi.impl)(version&gt;=2.36.0)(!(version&gt;=3.0.0)))"/>
+      <directive name="filter" value="(&amp;(osgi.wiring.package=org.eclipse.emf.ecore.xmi.impl)(version&gt;=2.37.0)(!(version&gt;=3.0.0)))"/>
       <attribute name="osgi.wiring.package" value="org.eclipse.emf.ecore.xmi.impl"/>
     </requirement>
     <requirement namespace="osgi.wiring.package">
@@ -301,7 +301,7 @@
       <directive name="filter" value="(&amp;(org.gecko.osgi.emf.persistence=mongo)(version&gt;=2.0.0)(!(version&gt;=3.0.0)))"/>
     </requirement>
     <requirement namespace="osgi.ee">
-      <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=17))"/>
+      <directive name="filter" value="(&amp;(osgi.ee=JavaSE)(version=11))"/>
     </requirement>
     <requirement namespace="osgi.extender">
       <directive name="filter" value="(&amp;(osgi.extender=osgi.component)(version&gt;=1.5.0)(!(version&gt;=2.0.0)))"/>
