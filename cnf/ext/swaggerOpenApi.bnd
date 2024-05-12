@@ -1,0 +1,27 @@
+-plugin.swaggerOpenApi: \
+	aQute.bnd.repository.maven.pom.provider.BndPomRepository;\
+		releaseUrl			= "https://repo.maven.apache.org/maven2/,https://devel.data-in-motion.biz/nexus/repository/dim-release/"; \
+		snapshotUrl			= "https://devel.data-in-motion.biz/nexus/repository/dim-snapshot/";\
+		revision            = "${swaggerOpenApi.libs}";\
+		transitive          = false;\
+		poll_time           = -1;\
+		name				= "Swagger OpenApi Jakarta"
+
+swaggerOpenApi.libs: \
+	io.swagger.core.v3:swagger-annotations-jakarta:2.2.20,\
+	io.swagger.core.v3:swagger-jaxrs2-jakarta:2.2.20,\
+	io.swagger.core.v3:swagger-models-jakarta:2.2.20,\
+	io.swagger.core.v3:swagger-integration-jakarta:2.2.20,\
+	io.swagger.core.v3:swagger-core-jakarta:2.2.20,\
+	jakarta.xml.bind:jakarta.xml.bind-api:3.0.1,\
+	commons-io:commons-io:2.14.0,\
+	org.apache.commons:commons-lang3:3.14.0,\
+	com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.16.0,\
+	com.fasterxml.jackson.core:jackson-annotations:2.16.0,\
+	com.fasterxml.jackson.core:jackson-core:2.16.0,\
+	com.fasterxml.jackson.core:jackson-databind:2.16.0,\
+	com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.16.0,\
+	io.github.classgraph:classgraph:4.8.162,\
+	org.yaml:snakeyaml:2.2,\
+	org.slf4j:slf4j-api:2.0.9,\
+	org.slf4j:slf4j-simple:2.0.9

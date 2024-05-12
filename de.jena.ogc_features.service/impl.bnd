@@ -1,0 +1,2 @@
+Private-Package: de.jena.ogc_features.service.impl
+-privatepackage: de.jena.ogc_features.service.impl.util

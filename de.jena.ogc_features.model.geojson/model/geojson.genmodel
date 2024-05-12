@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/de.jena.ogc_features.model.geojson/src" modelPluginID="de.jena.ogc_features.model.geojson"
+    modelName="OGCFeatures-GeoJSON" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" suppressGenModelAnnotations="false"
+    copyrightFields="false" usedGenPackages="../../de.jena.ogc_features.model.atom/model/atom.genmodel#//atom"
+    operationReflection="true" importOrganizing="true" oSGiCompatible="true">
+  <foreignModel>geojson.ecore</foreignModel>
+  <genPackages prefix="GeoJSON" basePackage="net.opengis.ogcapi.features.conf" resource="XMI"
+      disposableProviderFactory="true" ecorePackage="geojson.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="geojson.ecore#//GeometryType">
+      <genEnumLiterals ecoreEnumLiteral="geojson.ecore#//GeometryType/Point"/>
+      <genEnumLiterals ecoreEnumLiteral="geojson.ecore#//GeometryType/LineString"/>
+      <genEnumLiterals ecoreEnumLiteral="geojson.ecore#//GeometryType/Polygon"/>
+      <genEnumLiterals ecoreEnumLiteral="geojson.ecore#//GeometryType/MultiPoint"/>
+      <genEnumLiterals ecoreEnumLiteral="geojson.ecore#//GeometryType/MultiLineString"/>
+      <genEnumLiterals ecoreEnumLiteral="geojson.ecore#//GeometryType/MultiPolygon"/>
+      <genEnumLiterals ecoreEnumLiteral="geojson.ecore#//GeometryType/GeometryCollection"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="geojson.ecore#//FeatureType">
+      <genEnumLiterals ecoreEnumLiteral="geojson.ecore#//FeatureType/Feature"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="geojson.ecore#//FeatureCollectionType">
+      <genEnumLiterals ecoreEnumLiteral="geojson.ecore#//FeatureCollectionType/FeatureCollection"/>
+    </genEnums>
+    <genDataTypes ecoreDataType="geojson.ecore#//Array1D"/>
+    <genDataTypes ecoreDataType="geojson.ecore#//Array2D"/>
+    <genDataTypes ecoreDataType="geojson.ecore#//Array3D"/>
+    <genClasses ecoreClass="geojson.ecore#//GeometryCollection">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference geojson.ecore#//GeometryCollection/geometries"/>
+    </genClasses>
+    <genClasses ecoreClass="geojson.ecore#//Geometry">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute geojson.ecore#//Geometry/type"/>
+    </genClasses>
+    <genClasses ecoreClass="geojson.ecore#//Feature">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute geojson.ecore#//Feature/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute geojson.ecore#//Feature/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference geojson.ecore#//Feature/geometry"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference geojson.ecore#//Feature/properties"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference geojson.ecore#//Feature/links"/>
+    </genClasses>
+    <genClasses ecoreClass="geojson.ecore#//FeatureCollection">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute geojson.ecore#//FeatureCollection/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute geojson.ecore#//FeatureCollection/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference geojson.ecore#//FeatureCollection/features"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference geojson.ecore#//FeatureCollection/links"/>
+    </genClasses>
+    <genClasses ecoreClass="geojson.ecore#//Point">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute geojson.ecore#//Point/coordinates"/>
+    </genClasses>
+    <genClasses ecoreClass="geojson.ecore#//LineString">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute geojson.ecore#//LineString/coordinates"/>
+    </genClasses>
+    <genClasses ecoreClass="geojson.ecore#//MultiPoint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute geojson.ecore#//MultiPoint/coordinates"/>
+    </genClasses>
+    <genClasses ecoreClass="geojson.ecore#//Polygon">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute geojson.ecore#//Polygon/coordinates"/>
+    </genClasses>
+    <genClasses ecoreClass="geojson.ecore#//MultiLineString">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute geojson.ecore#//MultiLineString/coordinates"/>
+    </genClasses>
+    <genClasses ecoreClass="geojson.ecore#//MultiPolygon">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute geojson.ecore#//MultiPolygon/coordinates"/>
+    </genClasses>
+    <genClasses ecoreClass="geojson.ecore#//StringToStringMap">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute geojson.ecore#//StringToStringMap/key"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute geojson.ecore#//StringToStringMap/value"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

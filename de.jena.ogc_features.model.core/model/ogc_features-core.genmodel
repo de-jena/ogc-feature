@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/de.jena.ogc_features.model.core/src" modelPluginID="de.jena.ogc_features.model.core"
+    modelName="OGCAPIFeatures-Core" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="17.0" suppressGenModelAnnotations="false"
+    copyrightFields="false" usedGenPackages="../../de.jena.ogc_features.model.atom/model/atom.genmodel#//atom"
+    operationReflection="true" importOrganizing="true" oSGiCompatible="true">
+  <foreignModel>ogc_features-core.ecore</foreignModel>
+  <genPackages prefix="core" basePackage="net.opengis.ogcapi.features" resource="XMI"
+      disposableProviderFactory="true" ecorePackage="ogc_features-core.ecore#/">
+    <genDataTypes ecoreDataType="ogc_features-core.ecore#//Array1D"/>
+    <genDataTypes ecoreDataType="ogc_features-core.ecore#//Array2D"/>
+    <genClasses ecoreClass="ogc_features-core.ecore#//BoundingBox">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ogc_features-core.ecore#//BoundingBox/lowerCorner"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ogc_features-core.ecore#//BoundingBox/upperCorner"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ogc_features-core.ecore#//BoundingBox/crs"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ogc_features-core.ecore#//BoundingBox/dimensions"/>
+    </genClasses>
+    <genClasses ecoreClass="ogc_features-core.ecore#//OGCAPIFeaturesCollectionsWrapper">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ogc_features-core.ecore#//OGCAPIFeaturesCollectionsWrapper/collections"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ogc_features-core.ecore#//OGCAPIFeaturesCollectionsWrapper/links"/>
+    </genClasses>
+    <genClasses ecoreClass="ogc_features-core.ecore#//OGCAPIFeaturesCollection">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ogc_features-core.ecore#//OGCAPIFeaturesCollection/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ogc_features-core.ecore#//OGCAPIFeaturesCollection/itemType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ogc_features-core.ecore#//OGCAPIFeaturesCollection/title"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ogc_features-core.ecore#//OGCAPIFeaturesCollection/description"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ogc_features-core.ecore#//OGCAPIFeaturesCollection/links"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ogc_features-core.ecore#//OGCAPIFeaturesCollection/extent"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ogc_features-core.ecore#//OGCAPIFeaturesCollection/crs"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ogc_features-core.ecore#//OGCAPIFeaturesCollection/storageCrs"/>
+    </genClasses>
+    <genClasses ecoreClass="ogc_features-core.ecore#//ConformanceDeclaration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ogc_features-core.ecore#//ConformanceDeclaration/conformsTo"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ogc_features-core.ecore#//ConformanceDeclaration/links"/>
+    </genClasses>
+    <genClasses ecoreClass="ogc_features-core.ecore#//Extent">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ogc_features-core.ecore#//Extent/spatial"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ogc_features-core.ecore#//Extent/temporal"/>
+    </genClasses>
+    <genClasses ecoreClass="ogc_features-core.ecore#//LandingPage">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ogc_features-core.ecore#//LandingPage/title"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ogc_features-core.ecore#//LandingPage/description"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ogc_features-core.ecore#//LandingPage/links"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="ogc_features-core.ecore#//SpatialExtent">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ogc_features-core.ecore#//SpatialExtent/bbox"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ogc_features-core.ecore#//SpatialExtent/crs"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="ogc_features-core.ecore#//TemporalExtent">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ogc_features-core.ecore#//TemporalExtent/interval"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ogc_features-core.ecore#//TemporalExtent/trs"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
