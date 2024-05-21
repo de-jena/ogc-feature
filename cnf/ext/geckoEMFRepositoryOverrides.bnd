@@ -1,0 +1,10 @@
+-plugin.geckoSearch: \
+    aQute.bnd.repository.maven.provider.MavenBndRepository; \
+    	snapshotUrl="https://devel.data-in-motion.biz/nexus/repository/dim-snapshot/,https://oss.sonatype.org/content/repositories/snapshots/";\
+		releaseUrl="https://repo.maven.apache.org/maven2/,https://devel.data-in-motion.biz/nexus/repository/dim-release/";\
+        index=${.}/geckoEMFRepositoryOverrides.mvn; \
+        readOnly=true; \
+        poll.time=-1; \
+        name="Gecko EMF Repository Dependencies ( Overrides )"
+        
+-require-bnd: "(version>=6.3.1)"
